@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
         User user = userRepos.findByPasswordAndSchool(password, school);
         if (user != null) {
             String token = UUID.randomUUID().toString();
-            redisTemplate.opsForValue().set("user_" + token , user, 24, TimeUnit.HOURS);
+            redisTemplate.opsForValue().set("user_" + token , user.toString(), 24, TimeUnit.HOURS);
             return ResponseResult.ok(token);
         } else {
             return ResponseResult.fail();

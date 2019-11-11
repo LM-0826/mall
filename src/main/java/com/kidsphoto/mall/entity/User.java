@@ -1,7 +1,5 @@
 package com.kidsphoto.mall.entity;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,5 +18,18 @@ public class User extends Data implements Serializable {
     private String Password;
 
     @Column(name = "school")
-    private String School;
+    private int School;
+
+
+    public String getSchoolName() {
+        String schoolName = "";
+        switch (this.School) {
+            case 1:
+                schoolName = "德威国际学校";
+                break;
+            default:
+                break;
+        }
+        return schoolName;
+    }
 }
