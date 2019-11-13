@@ -9,10 +9,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.mvc.condition.RequestConditionHolder;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -54,6 +52,7 @@ public class LogAspect {
             String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
             StringBuilder args = new StringBuilder();
             for (Object arg : joinPoint.getArgs()) {
+                System.out.println(arg.getClass());
                 args.append("|");
                 if (arg instanceof ServletRequest || arg instanceof ServletResponse) {
                     args.append("null").append("|");
@@ -61,6 +60,7 @@ public class LogAspect {
                     args.append(JsonUtils.objectToJson(arg)).append("|");
                 }
             }
+            System.out.println(args.toString());
             log.info("\n【请求URL：{}】\n【请求METHOD：{}】\n【请求者IP：{}】\n【调用类-方法：{}】\n【调用参数：{}】",url,method,ip,classMethod,args.toString());
         } catch (Exception e) {
             log.info("【方法调用前，产生异常】【异常信息{}】",e.getMessage());
