@@ -29,8 +29,6 @@ public class PhotoController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ResponseResult upload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
         try {
-//            MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-//            MultipartFile file = multipartHttpServletRequest.getFile("file");
             photoService.uploadFile(file);
             return ResponseResult.ok();
         } catch (Exception e) {
