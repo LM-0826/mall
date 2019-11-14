@@ -7,11 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author 李明
@@ -26,13 +22,24 @@ public class PhotoController {
     @Autowired
     private PhotoService photoService;
 
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public ResponseResult upload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+//    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+//    public ResponseResult upload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+//        try {
+//            photoService.uploadFile(file, file.getOriginalFilename());
+//            return ResponseResult.ok();
+//        } catch (Exception e) {
+//            return ResponseResult.fail();
+//        }
+//    }
+
+    @RequestMapping(value = "/syncDate", method = RequestMethod.GET)
+    public ResponseResult syncData() {
         try {
-            photoService.uploadFile(file);
+            photoService.syncData();
             return ResponseResult.ok();
         } catch (Exception e) {
-            return ResponseResult.fail();
+            e.printStackTrace();
+            return ResponseResult.fail(e.getMessage());
         }
     }
 

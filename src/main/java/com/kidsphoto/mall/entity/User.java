@@ -18,18 +18,23 @@ public class User extends Data implements Serializable {
     private String Password;
 
     @Column(name = "school")
-    private int School;
+    private String School;
 
+    @Column(name = "grade")
+    private String grade;
 
-    public String getSchoolName() {
-        String schoolName = "";
-        switch (this.School) {
-            case 1:
-                schoolName = "德威国际学校";
-                break;
-            default:
-                break;
-        }
-        return schoolName;
-    }
+    @Column(name = "team")
+    private String team;
+
+//   public String getSchoolName() {
+//        String schoolName = "";
+//        switch (this.School) {
+//            case 1:
+//                schoolName = "德威国际学校";
+//                break;
+//            default:
+//                break;
+//        }
+//        return schoolName;
+//    }
 }

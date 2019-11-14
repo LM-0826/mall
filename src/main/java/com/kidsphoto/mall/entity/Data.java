@@ -1,7 +1,6 @@
 package com.kidsphoto.mall.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -27,6 +26,10 @@ public abstract class Data {
 
     @Column(name = "row_state", nullable = false, columnDefinition = "integer NOT NULL DEFAULT 0")
     private int rowState;
+
+    public Data() {
+        createDate = new Date();
+    }
 
     @Column(name = "create_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
