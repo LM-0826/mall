@@ -21,4 +21,8 @@ public class Photo extends Data implements Serializable {
 
     @Column(name = "img_url")
     private String imgUrl;
+
+    //1 个人肖像 2 Calendar 3 Class_Montage 4 Class_Photo 5 ID_Photo 6 Individual_Montage 7 Wallet_Portrait
+    @Column(name = "type_id")
+    private int typeId;
 }

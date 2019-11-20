@@ -32,6 +32,10 @@ public class PhotoController {
 //        }
 //    }
 
+    /**
+     * 同步数据
+     * @return
+     */
     @RequestMapping(value = "/syncDate", method = RequestMethod.GET)
     public ResponseResult syncData() {
         try {
