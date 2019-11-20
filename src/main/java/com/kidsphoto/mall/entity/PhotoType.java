@@ -11,9 +11,12 @@ import java.io.Serializable;
  */
 @Entity
 @lombok.Data
-@Table(name = "photo_type")
+@Table(name = "t_photo_type")
 public class PhotoType extends Data implements Serializable {
 
     @Column(name = "type_name")
     private String TypeName;
+
+    @Column(name = "school_name")
+    private String SchoolName;
 }

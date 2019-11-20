@@ -26,15 +26,4 @@ public class User extends Data implements Serializable {
     @Column(name = "team")
     private String team;
 
-//   public String getSchoolName() {
-//        String schoolName = "";
-//        switch (this.School) {
-//            case 1:
-//                schoolName = "德威国际学校";
-//                break;
-//            default:
-//                break;
-//        }
-//        return schoolName;
-//    }
 }
