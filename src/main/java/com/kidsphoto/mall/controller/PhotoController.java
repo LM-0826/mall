@@ -1,13 +1,18 @@
 package com.kidsphoto.mall.controller;
 
+import com.kidsphoto.mall.entity.Photo;
 import com.kidsphoto.mall.pojo.ResponseResult;
 import com.kidsphoto.mall.service.PhotoService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author 李明
@@ -37,6 +42,7 @@ public class PhotoController {
      * @return
      */
     @RequestMapping(value = "/syncDate", method = RequestMethod.GET)
+    @ApiOperation(value = "同步数据")
     public ResponseResult syncData() {
         try {
             photoService.syncData();
@@ -45,6 +51,13 @@ public class PhotoController {
             e.printStackTrace();
             return ResponseResult.fail(e.getMessage());
         }
+    }
+
+    @RequestMapping(value = "/photoList", method = RequestMethod.GET)
+    @ApiOperation(value = "查询用户所有照片")
+    public ResponseResult photoList(@RequestParam("userId") Long userId) {
+        List<Photo> list = this.photoService.findList(userId);
+        return ResponseResult.ok(list);
     }
 
 }

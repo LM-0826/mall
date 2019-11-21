@@ -38,6 +38,14 @@ public class Product extends Data implements Serializable {
     @Column(name = "product_describe")
     private String productDescribe;
 
+    // 价格
+    @Column(name = "price")
+    private int price;
+
+    // 规格1单片，2摆台
+    @Column(name = "photo_type")
+    private int photoType;
+
 
 
 }

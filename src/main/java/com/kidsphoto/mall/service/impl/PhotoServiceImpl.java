@@ -16,6 +16,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * @author 李明
@@ -67,6 +68,13 @@ public class PhotoServiceImpl implements PhotoService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<Photo> findList(Long userId) {
+
+        List<Photo> list = this.photoRepository.findList(userId);
+        return list;
     }
 
     private void getFiles(File file) {

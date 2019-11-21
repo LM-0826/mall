@@ -1,6 +1,9 @@
 package com.kidsphoto.mall.service;
 
+import com.kidsphoto.mall.entity.Photo;
+
 import java.io.File;
+import java.util.List;
 
 /**
  * @author 李明
@@ -10,4 +13,6 @@ public interface PhotoService {
     String uploadFile(File file, String name);
 
     void syncData();
+
+    List<Photo> findList(Long userId);
 }
