@@ -1,6 +1,7 @@
 package com.kidsphoto.mall.service;
 
 import com.kidsphoto.mall.entity.Photo;
+import com.kidsphoto.mall.entity.ProductS;
 
 import java.io.File;
 import java.util.List;
@@ -16,5 +17,5 @@ public interface PhotoService {
 
     List<Photo> findList(Long userId);
 
-    List<Photo> findPhotoProducts(Long photoType, Long productId, Long userId);
+    List<ProductS> findPhotoProducts(Long photoType, Long productId, Long userId);
 }

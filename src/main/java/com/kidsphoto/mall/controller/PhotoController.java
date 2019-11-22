@@ -1,6 +1,7 @@
 package com.kidsphoto.mall.controller;
 
 import com.kidsphoto.mall.entity.Photo;
+import com.kidsphoto.mall.entity.ProductS;
 import com.kidsphoto.mall.pojo.ResponseResult;
 import com.kidsphoto.mall.service.PhotoService;
 import io.swagger.annotations.Api;
@@ -64,7 +65,7 @@ public class PhotoController {
     @RequestMapping(value = "/photoProducts", method = RequestMethod.GET)
     @ApiOperation(value = "某产品类型下的所有照片商品")
     public ResponseResult photoProducts(@RequestParam("photoType") Long photoType, @RequestParam("productId") Long productId, @RequestParam("userId") Long userId) {
-        List<Photo> list = this.photoService.findPhotoProducts(photoType, productId, userId);
+        List<ProductS> list = this.photoService.findPhotoProducts(photoType, productId, userId);
         return ResponseResult.ok(list);
     }
 

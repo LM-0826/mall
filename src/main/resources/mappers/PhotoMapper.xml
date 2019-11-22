@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.kidsphoto.mall.dao.PhotoMapper">
+    <resultMap id="photoMap" type="com.kidsphoto.mall.entity.ProductS">
+
+        <result property="imgUrl" column="tp.img_url"/>
+        <result property="userId" column="tp.user_id"/>
+        <collection property="list" ofType="com.kidsphoto.mall.entity.ps">
+            <id property="id" column="pr.id"/>
+            <result property="price" column="pr.price"/>
+            <result property="productName" column="pr.product_name"/>
+            <result property="school" column="pr.school"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByType" resultMap="photoMap">
+        SELECT tp.img_url,tp.user_id,pr.id,pr.price,pr.product_name,pr.school FROM t_photo tp LEFT JOIN t_product_standard pr ON tp.type_id = pr.photo_type WHERE tp.type_id = #{typeId} AND pr.product_id = #{productId} AND tp.user_id = #{userId}
+    </select>
+
+
+
+</mapper>

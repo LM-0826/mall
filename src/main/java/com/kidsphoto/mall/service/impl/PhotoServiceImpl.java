@@ -8,6 +8,7 @@ import com.kidsphoto.mall.dao.PhotoMapper;
 import com.kidsphoto.mall.dao.PhotoRepository;
 import com.kidsphoto.mall.dao.UserRepository;
 import com.kidsphoto.mall.entity.Photo;
+import com.kidsphoto.mall.entity.ProductS;
 import com.kidsphoto.mall.entity.User;
 import com.kidsphoto.mall.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -35,7 +37,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
-    @Autowired
+    @Resource
     private PhotoMapper photoMapper;
 
     @Override
@@ -81,8 +83,8 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public List<Photo> findPhotoProducts(Long photoType, Long productId, Long userId) {
-        List<Photo> list = this.photoMapper.findByType(photoType, productId, userId);
+    public List<ProductS> findPhotoProducts(Long photoType, Long productId, Long userId) {
+        List<ProductS> list = this.photoMapper.findByType(photoType, productId, userId);
         return list;
     }
 

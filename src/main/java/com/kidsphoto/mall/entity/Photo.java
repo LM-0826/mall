@@ -27,5 +27,5 @@ public class Photo extends Data implements Serializable {
 
     //照片对于的商品
     @Transient
-    private List<Product> products;
+    private List<ProductStandard> products;
 }
