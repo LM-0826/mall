@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 李明
@@ -84,6 +85,13 @@ public class ProductController {
             }
             return ResponseResult.fail();
         }
+    }
+
+    @RequestMapping(value = "/goodsList", method = RequestMethod.GET)
+    @ApiOperation(value = "用户看到的商品列表")
+    public ResponseResult goodsList(@RequestParam("school") String school) {
+        Map<String, Object> map = productService.goodsList(school);
+        return ResponseResult.ok(map);
     }
 
 

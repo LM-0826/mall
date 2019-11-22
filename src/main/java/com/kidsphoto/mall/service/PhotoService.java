@@ -15,4 +15,6 @@ public interface PhotoService {
     void syncData();
 
     List<Photo> findList(Long userId);
+
+    List<Photo> findPhotoProducts(Long photoType, Long productId, Long userId);
 }

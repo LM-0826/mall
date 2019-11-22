@@ -60,4 +60,12 @@ public class PhotoController {
         return ResponseResult.ok(list);
     }
 
+
+    @RequestMapping(value = "/photoProducts", method = RequestMethod.GET)
+    @ApiOperation(value = "某产品类型下的所有照片商品")
+    public ResponseResult photoProducts(@RequestParam("photoType") Long photoType, @RequestParam("productId") Long productId, @RequestParam("userId") Long userId) {
+        List<Photo> list = this.photoService.findPhotoProducts(photoType, productId, userId);
+        return ResponseResult.ok(list);
+    }
+
 }
