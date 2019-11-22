@@ -4,7 +4,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
-import com.kidsphoto.mall.dao.PhotoMaaper;
+import com.kidsphoto.mall.dao.PhotoMapper;
 import com.kidsphoto.mall.dao.PhotoRepository;
 import com.kidsphoto.mall.dao.UserRepository;
 import com.kidsphoto.mall.entity.Photo;
@@ -36,8 +36,7 @@ public class PhotoServiceImpl implements PhotoService {
     private PhotoRepository photoRepository;
 
     @Autowired
-    private PhotoMaaper photoMaaper;
-
+    private PhotoMapper photoMapper;
 
     @Override
     public String uploadFile(File file, String name) {
@@ -83,7 +82,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public List<Photo> findPhotoProducts(Long photoType, Long productId, Long userId) {
-        List<Photo> list = this.photoMaaper.findByType(photoType, productId, userId);
+        List<Photo> list = this.photoMapper.findByType(photoType, productId, userId);
         return list;
     }
 

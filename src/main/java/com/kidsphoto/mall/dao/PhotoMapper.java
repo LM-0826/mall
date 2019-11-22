@@ -10,6 +10,7 @@ import java.util.List;
  * @create 2019-11-22 10:31
  */
 @Mapper
-public interface PhotoMaaper {
+public interface PhotoMapper {
+
     List<Photo> findByType(Long typeId, Long productId, Long userId);
 }

@@ -12,7 +12,7 @@
         </collection>
     </resultMap>
 
-    <select id="findByType" parameterType="Long" resultMap="photoMap">
+    <select id="findByType" resultMap="photoMap">
         select * from t_photo tp left join t_product pr join on tp.type_id = pr.photo_type_id where tp.type_id = #{typeId} and pr.id = #{productId} and pr.usre_id = #{userId};
     </select>
 
