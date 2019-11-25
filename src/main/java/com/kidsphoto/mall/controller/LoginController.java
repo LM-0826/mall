@@ -1,6 +1,7 @@
 package com.kidsphoto.mall.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.kidsphoto.mall.entity.BusinessException;
 import com.kidsphoto.mall.pojo.ResponseResult;
 import com.kidsphoto.mall.service.LoginService;
 import io.swagger.annotations.Api;
@@ -27,7 +28,7 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ApiOperation(value = "登录接口")
+    @ApiOperation(value = "登录接口,参数为password和school")
     public ResponseResult login(@RequestBody JSONObject jsonObject) {
 
         String password = jsonObject.getString("password");
@@ -36,8 +37,12 @@ public class LoginController {
             ResponseResult result = this.loginService.login(password, school);
             return  result;
         } catch (Exception e) {
-           log.info("【登录接口】出现错误：" + e.getMessage());
-            return ResponseResult.fail(e.getMessage());
+            if(e instanceof BusinessException) {
+                log.info("【登录接口】出现错误：" + e.getMessage());
+                return ResponseResult.fail(e.getMessage());
+            }
+            e.printStackTrace();
+            return ResponseResult.fail();
         }
     }
 

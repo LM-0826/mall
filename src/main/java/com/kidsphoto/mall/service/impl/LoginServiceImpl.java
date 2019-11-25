@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +35,11 @@ public class LoginServiceImpl implements LoginService {
         if (user != null) {
             String token = UUID.randomUUID().toString();
             redisTemplate.opsForValue().set("user_" + token , user.toString(), 24, TimeUnit.HOURS);
-            return ResponseResult.ok(token);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("token", token);
+            map.put("user", user);
+            return ResponseResult.ok(map);
+//            return ResponseResult.ok(user);
         } else {
             return ResponseResult.fail();
         }

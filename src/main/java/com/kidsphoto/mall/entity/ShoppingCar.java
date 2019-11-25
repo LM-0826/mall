@@ -14,23 +14,15 @@ import java.io.Serializable;
 @Table(name = "t_shopping_car")
 public class ShoppingCar extends Data implements Serializable {
 
-    // 照片id
-    @Column(name = "photo_id")
-    private Long photoId;
-
-    // 产品规格id
-    @Column(name = "product_standard_id")
-    private Long productStandardId;
-
     // 订购数量
-    @Column(name = "number")
-    private int number;
+    @Column(name = "book_number")
+    private int bookNumber;
 
     // 产品名字
-    @Column(name = "name")
-    private String name;
+    @Column(name = "book_name")
+    private String bookName;
 
-    // 规格 1 单片 2 摆台
+    // 规格 0 无规格 1 单片 2 摆台
     @Column(name = "type")
     private int type;
 
@@ -38,8 +30,15 @@ public class ShoppingCar extends Data implements Serializable {
     @Column(name = "price")
     private int price;
 
-    // 总价
-    @Column(name = "total_price")
-    private int totalPrice;
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    // 是否支付过 0 未支付过 1 支付过
+    @Column(name = "state")
+    private int state;
+
 
 }

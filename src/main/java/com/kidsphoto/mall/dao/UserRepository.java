@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    @Query(value = "SELECT * FROM t_user WHERE password = :password AND school = :school", nativeQuery = true)
+    @Query(value = "SELECT * FROM t_user WHERE passwords = :password AND school = :school", nativeQuery = true)
     User findByPasswordAndSchool(@Param("password") String password, @Param("school") String school);
 
 }

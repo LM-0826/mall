@@ -14,11 +14,11 @@ import java.io.Serializable;
 @Table(name = "t_user")
 public class User extends Data implements Serializable {
 
-    @Column(name = "password")
-    private String Password;
+    @Column(name = "passwords")
+    private String passwords;
 
     @Column(name = "school")
-    private String School;
+    private String school;
 
     @Column(name = "grade")
     private String grade;

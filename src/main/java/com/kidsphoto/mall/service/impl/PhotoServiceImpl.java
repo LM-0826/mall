@@ -100,7 +100,7 @@ public class PhotoServiceImpl implements PhotoService {
             String school = strings[strings.length - 4];
             if(this.userRepository.findByPasswordAndSchool(password, school) == null) {
                 User user = new User();
-                user.setPassword(password);
+                user.setPasswords(password);
                 user.setTeam(team);
                 user.setGrade(grade);
                 user.setSchool(school);
