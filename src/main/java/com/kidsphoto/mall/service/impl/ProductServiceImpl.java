@@ -45,10 +45,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findList(String school, int offset, int size) {
+    public Map<String, Object>  findList(String school, int offset, int size) {
 
+        Map<String, Object> map = new HashMap<>();
+        int count = this.productRepository.findCount(school);
         List<Product> list = this.productRepository.findList(school, offset, size);
-        return list;
+        map.put("list", list);
+        map.put("count", count);
+        return map;
     }
 
     @Override

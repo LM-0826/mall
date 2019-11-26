@@ -2,6 +2,7 @@ package com.kidsphoto.mall.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * @author 李明
@@ -29,8 +30,8 @@ public class Product extends Data implements Serializable {
     private String productDescribe;
 
     // 价格
-    @Column(name = "price")
-    private int price;
+    @Column(name = "price",  nullable = false)
+    private BigDecimal price = new BigDecimal("0.00");
 
     // 有无规格 0 无规格，1 有规格
     @Column(name = "flag")

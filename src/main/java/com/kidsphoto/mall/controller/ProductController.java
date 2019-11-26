@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -77,8 +76,8 @@ public class ProductController {
 
         int offset = (page - 1)*size;
         try {
-            List<Product> list = this.productService.findList(school, offset, size);
-            return ResponseResult.ok(list);
+            Map<String, Object> map = this.productService.findList(school, offset, size);
+            return ResponseResult.ok(map);
         } catch (Exception e) {
             if (e instanceof BusinessException) {
                 return ResponseResult.fail(e.getMessage());

@@ -17,4 +17,6 @@ public class ps {
     public String productName;
 
     public String school;
+
+    public String standardDescreibe;
 }

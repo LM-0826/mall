@@ -10,11 +10,16 @@
             <result property="price" column="price"/>
             <result property="productName" column="productName"/>
             <result property="school" column="school"/>
+            <result property="standardDescreibe" column="standardDescreibe"/>
         </collection>
     </resultMap>
 
     <select id="findByType" resultMap="photoMap">
-        SELECT tp.img_url imgUrl,tp.user_id userId,pr.id id,pr.price price,pr.product_name productName,pr.school school FROM t_photo tp LEFT JOIN t_product_standard pr ON tp.type_id = pr.photo_type WHERE tp.type_id = #{typeId} AND pr.product_id = #{productId} AND tp.user_id = #{userId}
+        SELECT  tp.img_url imgUrl,tp.`user_id` userId, b.id id, b.`price` price,b.`product_name` productName, b.`school` school,b.`standard_descreibe` standardDescreibe
+        FROM t_photo tp
+        LEFT JOIN  t_product a ON a.`photo_type_id` = tp.`type_id`
+        LEFT JOIN t_product_standard  b ON a.id = b.`product_id`
+        WHERE tp.type_id = #{typeId} AND a.id = #{productId} AND tp.user_id = #{userId}
     </select>
 
 

@@ -6,6 +6,7 @@ import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
 import com.kidsphoto.mall.dao.PhotoMapper;
 import com.kidsphoto.mall.dao.PhotoRepository;
+import com.kidsphoto.mall.dao.PhotoTypeRepository;
 import com.kidsphoto.mall.dao.UserRepository;
 import com.kidsphoto.mall.entity.Photo;
 import com.kidsphoto.mall.entity.ProductS;
@@ -40,6 +41,9 @@ public class PhotoServiceImpl implements PhotoService {
     @Resource
     private PhotoMapper photoMapper;
 
+    @Autowired
+    private PhotoTypeRepository photoTypeRepository;
+
     @Override
     public String uploadFile(File file, String name) {
         String endpoint = environment.getProperty("OSSWeb.endPoint");
@@ -65,10 +69,11 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void syncData() {
         String url = this.environment.getProperty("photo.url");
+        String ossUrl = this.environment.getProperty("photo.oss.url");
         File file = null;
         try {
             file = ResourceUtils.getFile(url);
-            this.getFiles(file);
+            this.getFiles(file, ossUrl);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -88,7 +93,7 @@ public class PhotoServiceImpl implements PhotoService {
         return list;
     }
 
-    private void getFiles(File file) {
+    private void getFiles(File file, String url) {
         if (file.isFile()) {
             String parentPath = file.getParent();
             System.out.println(parentPath);
@@ -106,20 +111,33 @@ public class PhotoServiceImpl implements PhotoService {
                 user.setSchool(school);
                 this.userRepository.save(user);
             }
-            String photoName = this.uploadFile(file, password);
-            if (photoName != null) {
+            String photoPath = this.uploadFile(file, password);
+            if (photoPath != null) {
                 User u = userRepository.findByPasswordAndSchool(password, school);
                 Photo photo = new Photo();
-                photo.setImgUrl(photoName);
+                String path = url + photoPath;
+                photo.setImgUrl(path);
                 photo.setUserId(u.getId());
+                String photoName = file.getName().substring(0, file.getName().lastIndexOf('.'));
+                if(photoName.length() == 1) {
+                    photo.setTypeId(this.photoTypeRepository.findByName("Personal_Portrait"));
+                } else {
+                    photo.setTypeId(this.photoTypeRepository.findByName(photoName));
+                }
                 this.photoRepository.save(photo);
             }
 
         } else if (file.isDirectory() && file.listFiles().length != 0) {
             File[] list = file.listFiles();
             for (int i = 0; i < list.length; i++) {
-                this.getFiles(list[i]);
+                this.getFiles(list[i], url);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        String a = "A.jpg";
+        String b = a.substring(0, a.lastIndexOf('.'));
+        System.out.println(b);
     }
 }

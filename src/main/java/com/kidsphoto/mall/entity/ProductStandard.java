@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**商品种类表
  * @author 李明
@@ -31,12 +32,12 @@ public class ProductStandard extends Data implements Serializable {
     private String productName;
 
     // 规格1单片，2摆台
-    @Column(name = "photo_type")
-    private int photoType;
+    @Column(name = "product_standard")
+    private int productStandard;
 
     // 价格
-    @Column(name = "price")
-    private int price;
+    @Column(name = "price",  nullable = false)
+    private BigDecimal price = new BigDecimal("0.00");
 
     // 规格描述
     @Column(name = "standard_descreibe")

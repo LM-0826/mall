@@ -20,4 +20,7 @@ public interface PhotoTypeRepository extends CrudRepository<PhotoType, Long> {
 
     @Query(value = "SELECT school_name FROM t_photo_type WHERE row_state = 0 GROUP BY school_name", nativeQuery = true)
     List<String> findSchoolName();
+
+    @Query(value = "SELECT id FROM t_photo_type WHERE row_state = 0 AND type_name = :photoName", nativeQuery = true)
+    int findByName(@Param("photoName") String photoName);
 }
