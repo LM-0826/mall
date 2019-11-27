@@ -68,4 +68,11 @@ public class ProductServiceImpl implements ProductService {
 
         return map;
     }
+
+    @Override
+    public List<Product> findHaveStandard(String schoolName) {
+
+        List<Product> list = productRepository.findHaveStandard(schoolName);
+        return list;
+    }
 }

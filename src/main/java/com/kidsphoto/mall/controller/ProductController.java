@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -91,6 +92,15 @@ public class ProductController {
     public ResponseResult goodsList(@RequestParam("school") String school) {
         Map<String, Object> map = productService.goodsList(school);
         return ResponseResult.ok(map);
+    }
+
+
+    @RequestMapping(value = "/photoProductStandard", method = RequestMethod.GET)
+    @ApiOperation(value = "某学校下需要增加规格的产品")
+    public ResponseResult photoProductStandard(@RequestParam("schoolName") String schoolName) {
+
+        List<Product> list = productService.findHaveStandard(schoolName);
+        return ResponseResult.ok(list);
     }
 
 

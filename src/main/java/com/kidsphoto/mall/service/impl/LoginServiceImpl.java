@@ -39,7 +39,6 @@ public class LoginServiceImpl implements LoginService {
             map.put("token", token);
             map.put("user", user);
             return ResponseResult.ok(map);
-//            return ResponseResult.ok(user);
         } else {
             return ResponseResult.fail();
         }

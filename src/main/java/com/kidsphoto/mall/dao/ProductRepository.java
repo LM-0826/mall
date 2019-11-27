@@ -24,6 +24,9 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query(value = "SELECT * FROM t_product WHERE school = :school ", nativeQuery = true)
     List<Product> findBySchool(@Param("school") String school);
 
-    @Query(value = "SELECT COUNT(*) FROM t_productWHERE school = :school AND row_state = 0", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM t_product WHERE school = :school AND row_state = 0", nativeQuery = true)
     int findCount(@Param("school") String school);
+
+    @Query(value = "SELECT * FROM t_product WHERE school = :schoolName AND row_state = 0 AND flag = 1", nativeQuery = true)
+    List<Product> findHaveStandard(@Param("schoolName") String schoolName);
 }

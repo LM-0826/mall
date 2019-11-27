@@ -72,19 +72,19 @@ public class PhotoTypeController {
         }
     }
 
-    @RequestMapping(value = "/querySchooles", method = RequestMethod.GET)
-    @ApiOperation(value = "查询所有学校")
-    public ResponseResult querySchooles() {
-
-        try {
-            List<String> list = this.photoTypeService.findSchoolName();
-            return ResponseResult.ok(list);
-        } catch (Exception e) {
-            if (e instanceof BusinessException) {
-                return ResponseResult.fail(e.getMessage());
-            }
-            return ResponseResult.fail();
-        }
-    }
+//    @RequestMapping(value = "/querySchooles", method = RequestMethod.GET)
+//    @ApiOperation(value = "查询所有学校")
+//    public ResponseResult querySchooles() {
+//
+//        try {
+//            List<String> list = this.photoTypeService.findSchoolName();
+//            return ResponseResult.ok(list);
+//        } catch (Exception e) {
+//            if (e instanceof BusinessException) {
+//                return ResponseResult.fail(e.getMessage());
+//            }
+//            return ResponseResult.fail();
+//        }
+//    }
 
 }

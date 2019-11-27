@@ -20,4 +20,10 @@ public interface ProductStandardRepository extends CrudRepository<ProductStandar
 
     @Query(value = "SELECT * FROM t_product_standard WHERE school = :school AND product_type = 2", nativeQuery = true)
     List<ProductStandard> findBList(@Param("school") String school);
+
+    @Query(value = "SELECT * FROM t_product_standard", nativeQuery = true)
+    List<ProductStandard> findAllList();
+
+    @Query(value = "SELECT * FROM t_product_standard WHERE school = :schoolName", nativeQuery = true)
+    List<ProductStandard> findList(@Param("schoolName") String schoolName);
 }

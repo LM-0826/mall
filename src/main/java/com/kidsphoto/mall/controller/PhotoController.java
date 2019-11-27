@@ -69,4 +69,5 @@ public class PhotoController {
         return ResponseResult.ok(list);
     }
 
+
 }

@@ -2,6 +2,7 @@ package com.kidsphoto.mall.service;
 
 import com.kidsphoto.mall.entity.Product;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +19,6 @@ public interface ProductService {
     Map<String, Object>  findList(String school, int offset, int size);
 
     Map<String, Object> goodsList(String school);
+
+    List<Product> findHaveStandard(String schoolName);
 }
