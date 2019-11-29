@@ -8,6 +8,7 @@ import com.kidsphoto.mall.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -33,13 +34,18 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
             String imageUrl = list.getJSONObject(i).getString("imageUrl");
             Integer price = list.getJSONObject(i).getInteger("price");
             Long userId = list.getJSONObject(i).getLong("userId");
+            Long productId = list.getJSONObject(i).getLong("productId");
+            Long productStandardId = list.getJSONObject(i).getLong("productStandardId");
 
             ShoppingCar shoppingCar = new ShoppingCar();
             shoppingCar.setBookNumber(bookNumber);
             shoppingCar.setBookName(bookName);
             shoppingCar.setType(type);
             shoppingCar.setImageUrl(imageUrl);
-            shoppingCar.setPrice(price);
+            shoppingCar.setPrice(BigDecimal.valueOf(price));
+            shoppingCar.setUserId(userId);
+            shoppingCar.setProductId(productId);
+            shoppingCar.setProductStandardId(productStandardId);
             this.shoppingCarRepository.save(shoppingCar);
         }
             

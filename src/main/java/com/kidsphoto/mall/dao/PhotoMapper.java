@@ -1,5 +1,6 @@
 package com.kidsphoto.mall.dao;
 
+import com.kidsphoto.mall.entity.Photo;
 import com.kidsphoto.mall.entity.ProductS;
 
 import java.util.List;
@@ -11,4 +12,6 @@ import java.util.List;
 public interface PhotoMapper {
 
     List<ProductS> findByType(Long typeId, Long productId, Long userId);
+
+    List<Photo> findByPhotoTypeId(Long photoTypeId, Long userId);
 }

@@ -70,4 +70,12 @@ public class PhotoController {
     }
 
 
+    @RequestMapping(value = "/findByPhotoTypeId", method = RequestMethod.GET)
+    @ApiOperation(value = "根据照片类型id查询照片")
+    public ResponseResult findByPhotoTypeId (@RequestParam("photoTypeId") Long photoTypeId, @RequestParam("userId") Long userId) {
+        List<Photo> list = photoService.findByPhotoTypeId(photoTypeId, userId);
+        return ResponseResult.ok(list);
+    }
+
+
 }

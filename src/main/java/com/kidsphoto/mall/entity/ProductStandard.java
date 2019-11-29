@@ -15,19 +15,23 @@ import java.math.BigDecimal;
 @Table(name = "t_product_standard")
 public class ProductStandard extends Data implements Serializable {
 
-    //商品id
+    // 商品id
     @Column(name = "product_id")
     private Long productId;
 
-    //学校
+    // 照片类型id
+    @Column(name = "photo_type_id")
+    private Long photoTypeId;
+
+    // 学校
     @Column(name = "school")
     private String school;
 
-    // 0 单品， 1 套餐A，2 套餐B
+    // 产品类型  单品，  套餐A，套餐B
     @Column(name = "product_type")
-    private int productType;
+    private String productType;
 
-    //产品名字
+    // 产品名字
     @Column(name = "product_name")
     private String productName;
 

@@ -1,8 +1,9 @@
 package com.kidsphoto.mall.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author 李明
@@ -25,7 +26,7 @@ public class Photo extends Data implements Serializable {
     @Column(name = "type_id")
     private int typeId;
 
-    //照片对于的商品
-    @Transient
-    private List<ProductStandard> products;
+//    //照片对于的商品
+//    @Transient
+//    private List<ProductStandard> products;
 }

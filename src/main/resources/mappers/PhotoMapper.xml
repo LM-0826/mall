@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <mapper namespace="com.kidsphoto.mall.dao.PhotoMapper">
     <resultMap id="photoMap" type="com.kidsphoto.mall.entity.ProductS">
-
         <result property="imgUrl" column="imgUrl"/>
         <result property="userId" column="userId"/>
         <collection property="list" ofType="com.kidsphoto.mall.entity.ps">
@@ -20,6 +19,18 @@
         LEFT JOIN  t_product a ON a.`photo_type_id` = tp.`type_id`
         LEFT JOIN t_product_standard  b ON a.id = b.`product_id`
         WHERE tp.type_id = #{typeId} AND a.id = #{productId} AND tp.user_id = #{userId}
+    </select>
+
+
+    <resultMap id="photo" type="com.kidsphoto.mall.entity.Photo">
+        <result property="imgUrl" column="img_url"/>
+        <result property="userId" column="user_id"/>
+        <result property="id" column="id"/>
+        <result property="typeId" column="type_id"/>
+    </resultMap>
+
+    <select id="findByPhotoTypeId" resultMap="photo">
+            SELECT * FROM t_photo WHERE type_id = #{photoTypeId} AND user_id = #{userId}
     </select>
 
 

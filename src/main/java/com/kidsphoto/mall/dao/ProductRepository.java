@@ -29,4 +29,5 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM t_product WHERE school = :schoolName AND row_state = 0 AND flag = 1", nativeQuery = true)
     List<Product> findHaveStandard(@Param("schoolName") String schoolName);
+
 }

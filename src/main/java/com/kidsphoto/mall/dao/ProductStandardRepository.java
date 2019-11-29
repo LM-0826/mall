@@ -15,15 +15,24 @@ import java.util.List;
 @Repository
 public interface ProductStandardRepository extends CrudRepository<ProductStandard, Long> {
 
-    @Query(value = "SELECT * FROM t_product_standard WHERE school = :school AND product_type = 1", nativeQuery = true)
-    List<ProductStandard> findAList(@Param("school") String school);
 
-    @Query(value = "SELECT * FROM t_product_standard WHERE school = :school AND product_type = 2", nativeQuery = true)
-    List<ProductStandard> findBList(@Param("school") String school);
+
+    @Query(value = "SELECT product_type FROM t_product_standard WHERE school = :school ", nativeQuery = true)
+    List<String> findProductTypeBySchool(@Param("school") String school);
+
+
+//    @Query(value = "SELECT * FROM t_product_standard WHERE school = :school AND product_type = 1", nativeQuery = true)
+//    List<ProductStandard> findAList(@Param("school") String school);
+//
+//    @Query(value = "SELECT * FROM t_product_standard WHERE school = :school AND product_type = 2", nativeQuery = true)
+//    List<ProductStandard> findBList(@Param("school") String school);
 
     @Query(value = "SELECT * FROM t_product_standard", nativeQuery = true)
     List<ProductStandard> findAllList();
 
     @Query(value = "SELECT * FROM t_product_standard WHERE school = :schoolName", nativeQuery = true)
     List<ProductStandard> findList(@Param("schoolName") String schoolName);
+
+    @Query(value = "SELECT * FROM t_product_standard WHERE school = :school AND product_type = :s", nativeQuery = true)
+    List<ProductStandard> findTaoCanList(String school, String s);
 }

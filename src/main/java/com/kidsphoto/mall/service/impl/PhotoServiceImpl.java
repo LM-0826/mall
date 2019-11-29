@@ -93,6 +93,12 @@ public class PhotoServiceImpl implements PhotoService {
         return list;
     }
 
+    @Override
+    public List<Photo> findByPhotoTypeId(Long photoTypeId, Long userId) {
+        List<Photo> list = this.photoMapper.findByPhotoTypeId(photoTypeId, userId);
+        return list;
+    }
+
     private void getFiles(File file, String url) {
         if (file.isFile()) {
             String parentPath = file.getParent();

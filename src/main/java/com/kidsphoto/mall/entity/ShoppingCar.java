@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * @author 李明
@@ -26,10 +27,11 @@ public class ShoppingCar extends Data implements Serializable {
     @Column(name = "type")
     private int type;
 
-    // 单价
-    @Column(name = "price")
-    private int price;
+    // 价格
+    @Column(name = "price",  nullable = false)
+    private BigDecimal price = new BigDecimal("0.00");
 
+    // 图片路径
     @Column(name = "image_url")
     private String imageUrl;
 
@@ -39,6 +41,14 @@ public class ShoppingCar extends Data implements Serializable {
     // 是否支付过 0 未支付过 1 支付过
     @Column(name = "state")
     private int state;
+
+    // 产品id
+    @Column(name = "product_id")
+    private Long productId;
+
+    // 产品规格ID
+    @Column(name = "product_standard_id")
+    private Long productStandardId;
 
 
 }

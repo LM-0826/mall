@@ -18,4 +18,6 @@ public interface PhotoService {
     List<Photo> findList(Long userId);
 
     List<ProductS> findPhotoProducts(Long photoType, Long productId, Long userId);
+
+    List<Photo> findByPhotoTypeId(Long photoTypeId, Long userId);
 }

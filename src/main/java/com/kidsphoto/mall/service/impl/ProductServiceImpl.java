@@ -5,6 +5,7 @@ import com.kidsphoto.mall.dao.ProductStandardRepository;
 import com.kidsphoto.mall.entity.Product;
 import com.kidsphoto.mall.entity.ProductStandard;
 import com.kidsphoto.mall.service.ProductService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,12 +60,15 @@ public class ProductServiceImpl implements ProductService {
     public Map<String, Object> goodsList(String school) {
 
         Map<String, Object> map = new HashMap<>();
-        List<ProductStandard> aList = productStandardRepository.findAList(school);
-        List<ProductStandard> bList = productStandardRepository.findBList(school);
+        List<String> productType = productStandardRepository.findProductTypeBySchool(school);
+        for(int i = 0; productType.size() > i; i++) {
+           if(StringUtils.isNoneBlank(productType.get(i))) {
+               List<ProductStandard> list = productStandardRepository.findTaoCanList(school, productType.get(i));
+               map.put(productType.get(i), list);
+           }
+        }
         List<Product> list = productRepository.findBySchool(school);
-        map.put("Ataocan", aList);
-        map.put("Btaocan", bList);
-        map.put("danpin", list);
+        map.put("单品", list);
 
         return map;
     }
